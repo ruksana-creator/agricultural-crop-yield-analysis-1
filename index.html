@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agricultural Crop Yield Analysis Website</title>
+
+    <style>
+
+        body{
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4fff4;
+        }
+
+        header{
+            background-color: green;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav{
+            background-color: darkgreen;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a{
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+            font-weight: bold;
+        }
+
+        .hero{
+            text-align: center;
+            padding: 40px;
+        }
+
+        .hero h1{
+            color: green;
+        }
+
+        .container{
+            width: 400px;
+            background-color: white;
+            margin: auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        label{
+            font-weight: bold;
+        }
+
+        input, select{
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button{
+            width: 100%;
+            padding: 12px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background-color: darkgreen;
+        }
+
+        .result{
+            margin-top: 20px;
+            background-color: #eef9ee;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        footer{
+            margin-top: 40px;
+            background-color: green;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Agricultural Crop Yield Analysis</h1>
+    <p>Web-Based Crop Production Analysis System</p>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Analysis</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</nav>
+
+<section class="hero">
+    <h1>Analyze Your Crop Yield Easily</h1>
+    <p>Enter crop details and analyze agricultural performance.</p>
+</section>
+
+<div class="container">
+
+    <h2 style="text-align:center;color:green;">Yield Analysis Form</h2>
+
+    <label>Farmer Name</label>
+    <input type="text" id="farmer" placeholder="Enter Farmer Name">
+
+    <label>Crop Name</label>
+    <select id="crop">
+        <option>Rice</option>
+        <option>Wheat</option>
+        <option>Maize</option>
+        <option>Sugarcane</option>
+    </select>
+
+    <label>Land Area (Acres)</label>
+    <input type="number" id="land" placeholder="Enter Land Area">
+
+    <label>Total Production (Kg)</label>
+    <input type="number" id="production" placeholder="Enter Production">
+
+    <button onclick="analyzeYield()">Analyze Yield</button>
+
+    <div class="result" id="output"></div>
+
+</div>
+
+<footer>
+    <p>© 2026 Agricultural Crop Yield Analysis Website</p>
+</footer>
+
+<script>
+
+function analyzeYield(){
+
+    let farmer = document.getElementById("farmer").value;
+
+    let crop = document.getElementById("crop").value;
+
+    let land = Number(document.getElementById("land").value);
+
+    let production = Number(document.getElementById("production").value);
+
+    let yieldValue = production / land;
+
+    let performance = "";
+
+    if(yieldValue >= 1000){
+        performance = "Excellent Yield";
+    }
+    else if(yieldValue >= 700){
+        performance = "Good Yield";
+    }
+    else if(yieldValue >= 400){
+        performance = "Average Yield";
+    }
+    else{
+        performance = "Low Yield";
+    }
+
+    document.getElementById("output").innerHTML = `
+
+        <h3>Crop Yield Report</h3>
+
+        <p><b>Farmer Name:</b> ${farmer}</p>
+
+        <p><b>Crop Name:</b> ${crop}</p>
+
+        <p><b>Land Area:</b> ${land} Acres</p>
+
+        <p><b>Total Production:</b> ${production} Kg</p>
+
+        <p><b>Yield Per Acre:</b> ${yieldValue.toFixed(2)} Kg</p>
+
+        <p><b>Performance:</b> ${performance}</p>
+
+    `;
+}
+
+</script>
+
+</body>
+</html>
